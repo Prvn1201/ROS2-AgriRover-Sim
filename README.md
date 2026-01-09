@@ -55,4 +55,4 @@ ros2 launch bfm4523_agricultural_rover gazebo.launch.py
 
 ---
 **Course:** BFM4523 - AUTONOMOUS ROBOTIC SYSTEM
-**University:** UNIVERSITY MALAYSIA PAHANG AL-SULTAN ABDDULAH (UMPSA)
+**University:** UNIVERSITY MALAYSIA PAHANG AL-SULTAN ABDULAH (UMPSA)
