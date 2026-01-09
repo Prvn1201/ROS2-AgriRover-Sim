@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<robot name="Autonomous_Vin_V1" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+<gazebo reference="base_link">
+  <material>${body_color}</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <self_collide>false</self_collide> <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="front_left_wheel_1"><material>Gazebo/Black</material></gazebo>
+<gazebo reference="front_right_wheel_1"><material>Gazebo/Black</material></gazebo>
+<gazebo reference="back_left_wheel_1"><material>Gazebo/Black</material></gazebo>
+<gazebo reference="back_right_wheel_1"><material>Gazebo/Black</material></gazebo>
+
+<gazebo reference="first_link_1"><material>Gazebo/Grey</material></gazebo>
+<gazebo reference="second_link_1"><material>Gazebo/Grey</material></gazebo>
+<gazebo reference="third_link_1"><material>Gazebo/Grey</material></gazebo>
+<gazebo reference="lidar_1"><material>Gazebo/Grey</material></gazebo>
+
+<gazebo reference="first_link_1"><self_collide>false</self_collide></gazebo>
+<gazebo reference="second_link_1"><self_collide>false</self_collide></gazebo>
+<gazebo reference="third_link_1"><self_collide>false</self_collide></gazebo>
+
+<xacro:macro name="wheel_physics" params="reference">
+  <gazebo reference="${reference}">
+    <mu1>1.0</mu1>
+    <mu2>1.0</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+</xacro:macro>
+
+<xacro:wheel_physics reference="front_left_wheel_1"/>
+<xacro:wheel_physics reference="back_left_wheel_1"/>
+<xacro:wheel_physics reference="front_right_wheel_1"/>
+<xacro:wheel_physics reference="back_right_wheel_1"/>
+
+<gazebo>
+  <plugin
+    filename="libignition-gazebo-diff-drive-system.so"
+    name="ignition::gazebo::systems::DiffDrive">
+    <left_joint>joint_front_left_wheel_1</left_joint>
+    <left_joint>joint_back_left_wheel_1</left_joint>
+    <right_joint>joint_front_right_wheel_1</right_joint>
+    <right_joint>joint_back_right_wheel_1</right_joint>
+    <wheel_separation>0.4</wheel_separation>
+    <wheel_radius>0.09</wheel_radius>
+    <max_wheel_torque>100</max_wheel_torque> <topic>cmd_vel</topic>
+    <odom_topic>odom</odom_topic>
+    <frame_id>odom</frame_id>
+    <child_frame_id>base_footprint</child_frame_id>
+  </plugin>
+
+  <plugin 
+    filename="libignition-gazebo-joint-state-publisher-system.so"
+    name="ignition::gazebo::systems::JointStatePublisher">
+    <topic>joint_states</topic>
+  </plugin>
+
+  <plugin 
+    filename="libignition-gazebo-joint-position-controller-system.so"
+    name="ignition::gazebo::systems::JointPositionController">
+    <joint_name>Revolute 10</joint_name>
+    <p_gain>500</p_gain>
+    <i_gain>0.1</i_gain>
+    <d_gain>10</d_gain>
+    <topic>joint_1_cmd</topic>
+  </plugin>
+
+  <plugin 
+    filename="libignition-gazebo-joint-position-controller-system.so"
+    name="ignition::gazebo::systems::JointPositionController">
+    <joint_name>Revolute 11</joint_name>
+    <p_gain>2000</p_gain> 
+    <i_gain>1.0</i_gain>
+    <d_gain>50</d_gain>
+    <topic>joint_2_cmd</topic>
+  </plugin>
+
+  <plugin 
+    filename="libignition-gazebo-joint-position-controller-system.so"
+    name="ignition::gazebo::systems::JointPositionController">
+    <joint_name>Revolute 12</joint_name>
+    <p_gain>1500</p_gain>
+    <i_gain>0.5</i_gain>
+    <d_gain>30</d_gain>
+    <topic>joint_3_cmd</topic>
+  </plugin>
+</gazebo>
+
+</robot>
