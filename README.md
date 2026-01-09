@@ -44,7 +44,7 @@ A ROS 2 simulation package for an autonomous agricultural rover. This project de
 This launches the rover in the custom Maze/Farm world with the bridge active.
 ```bash
 ros2 launch bfm4523_agricultural_rover gazebo.launch.py
-
+```
 ## Team Members
 
 * **PRAVIN THIRUCHELVAM**
