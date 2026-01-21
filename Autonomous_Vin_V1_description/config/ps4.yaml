@@ -1,0 +1,8 @@
+teleop_twist_joy_node:
+  ros__parameters:
+    axis_linear:  2  # Left Stick Up/Down (Standard PS4)
+    axis_angular: 4  # Right Stick Left/Right (Standard PS4)
+    scale_linear: 0.5  # Max speed (m/s)
+    scale_angular: 1.5 # Max turn speed (rad/s)
+    enable_button: 5  # "R1" button (Deadman switch - must hold to move)
+    require_enable_button: true

@@ -1,0 +1,43 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_controller:
+      type: position_controllers/JointGroupPositionController
+
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+# Parameters for the Arm
+arm_controller:
+  ros__parameters:
+    joints:
+      - Revolute 10
+      - Revolute 11
+      - Revolute 12
+    interface_name: position
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+# Parameters for the Wheels
+diff_drive_controller:
+  ros__parameters:
+    left_wheel_names: ["Revolute 8", "Revolute 9"]
+    right_wheel_names: ["Revolute 6", "Revolute 7"]
+    wheel_separation: 0.4
+    wheel_radius: 0.05
+    use_stamped_vel: false
+
+    # ---------------------------------------------------------
+    # CRITICAL FIXES FOR SLAM
+    # ---------------------------------------------------------
+    enable_odom_tf: true       # <--- THIS WAS MISSING. Turns on the TF broadcast.
+    base_frame_id: base_link   # Make sure this matches your URDF's main body link
+    odom_frame_id: odom        # The name of the odom frame
+    publish_rate: 50.0         # How often to publish position (Hz)

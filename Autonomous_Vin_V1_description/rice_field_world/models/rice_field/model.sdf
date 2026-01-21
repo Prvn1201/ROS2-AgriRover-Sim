@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="rice_field">
+    <static>true</static>
+
+    <link name="terrain">
+
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://rice_field/meshes/rice_field_visual.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://rice_field/meshes/rice_field_visual.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </visual>
+
+    </link>
+  </model>
+</sdf>
+

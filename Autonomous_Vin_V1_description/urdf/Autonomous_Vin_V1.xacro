@@ -1,0 +1,299 @@
+<?xml version="1.0" ?>
+<robot name="Autonomous_Vin_V1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find Autonomous_Vin_V1_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find Autonomous_Vin_V1_description)/urdf/Autonomous_Vin_V1.trans" />
+  <xacro:include filename="$(find Autonomous_Vin_V1_description)/urdf/Autonomous_Vin_V1.gazebo" />
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+
+    <joint name="Revolute 10">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Revolute 11">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Revolute 12">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="Revolute 6">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Revolute 7">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Revolute 8">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="Revolute 9">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.002063968042663588 -1.987201768148543e-05 0.13233013624671025" rpy="0 0 0"/>
+      <mass value="153.81521073081208"/>
+      <inertia ixx="1.511602" iyy="2.386477" izz="3.112594" ixy="0.000625" iyz="0.000124" ixz="0.021649"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="lidar_1">
+    <inertial>
+      <origin xyz="-0.0012345701242775092 -1.4984662802257324e-05 0.019298490095559062" rpy="0 0 0"/>
+      <mass value="1.298267249619559"/>
+      <inertia ixx="0.000619" iyy="0.00059" izz="0.000863" ixy="0.0" iyz="0.0" ixz="1.7e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.05 -0.0 -0.29" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.05 -0.0 -0.29" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="front_left_wheel_1">
+    <inertial>
+      <origin xyz="0.0 -0.024999999999999967 2.7755575615628914e-17" rpy="0 0 0"/>
+      <mass value="9.802110524178216"/>
+      <inertia ixx="0.021493" iyy="0.039018" izz="0.021493" ixy="0.0" iyz="0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.14 0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.14 0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/front_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="back_left_wheel_1">
+    <inertial>
+      <origin xyz="0.0 -0.024999999999999994 2.7755575615628914e-17" rpy="0 0 0"/>
+      <mass value="9.802110524178214"/>
+      <inertia ixx="0.021493" iyy="0.039018" izz="0.021493" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.14 0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/back_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.14 0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/back_left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="front_right_wheel_1">
+    <inertial>
+      <origin xyz="0.0 0.025000000000000022 0.0" rpy="0 0 0"/>
+      <mass value="9.802110524178214"/>
+      <inertia ixx="0.021493" iyy="0.039018" izz="0.021493" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.14 -0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="-0.14 -0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/front_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="back_right_wheel_1">
+    <inertial>
+      <origin xyz="0.0 0.025000000000000022 -1.3877787807814457e-17" rpy="0 0 0"/>
+      <mass value="9.802110524178218"/>
+      <inertia ixx="0.021493" iyy="0.039018" izz="0.021493" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.14 -0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/back_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.14 -0.2 -0.09" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/back_right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="first_link_1">
+    <inertial>
+      <origin xyz="5.551115123125783e-17 7.07023272645337e-16 0.05458818822189343" rpy="0 0 0"/>
+      <mass value="9.088215786708611"/>
+      <inertia ixx="0.01806" iyy="0.019563" izz="0.015104" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.11 -0.0 -0.2" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/first_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.11 -0.0 -0.2" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/first_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="second_link_1">
+    <inertial>
+      <origin xyz="-0.020000000000000004 -1.4146203686619534e-14 0.05114879023705743" rpy="0 0 0"/>
+      <mass value="1.8232145536056348"/>
+      <inertia ixx="0.00253" iyy="0.002415" izz="0.000601" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.09 -0.0 -0.33" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/second_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.09 -0.0 -0.33" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/second_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="third_link_1">
+    <inertial>
+      <origin xyz="-0.019932570293638943 1.384488920803934e-06 0.09215199523103351" rpy="0 0 0"/>
+      <mass value="4.591742673916472"/>
+      <inertia ixx="0.018254" iyy="0.016649" izz="0.004578" ixy="0.0" iyz="1e-06" ixz="-1.7e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.09 -0.0 -0.421" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/third_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.09 -0.0 -0.421" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://$(find Autonomous_Vin_V1_description)/meshes/third_link_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="Rigid 5" type="fixed">
+    <origin xyz="0.05 0.0 0.29" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="lidar_1"/>
+  </joint>
+
+  <joint name="Revolute 6" type="continuous">
+    <origin xyz="0.14 -0.2 0.09" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="front_left_wheel_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <joint name="Revolute 7" type="continuous">
+    <origin xyz="-0.14 -0.2 0.09" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="back_left_wheel_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <joint name="Revolute 8" type="continuous">
+    <origin xyz="0.14 0.2 0.09" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="front_right_wheel_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <joint name="Revolute 9" type="continuous">
+    <origin xyz="-0.14 0.2 0.09" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="back_right_wheel_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+
+  <joint name="Revolute 10" type="continuous">
+    <origin xyz="-0.11 0.0 0.2" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="first_link_1"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <dynamics damping="50.0" friction="50.0"/>
+  </joint>
+
+  <joint name="Revolute 11" type="revolute">
+    <origin xyz="0.02 0.0 0.13" rpy="0 0 0"/>
+    <parent link="first_link_1"/>
+    <child link="second_link_1"/>
+    <axis xyz="-1.0 0.0 0.0"/>
+    <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    <dynamics damping="50.0" friction="50.0"/>
+  </joint>
+
+  <joint name="Revolute 12" type="revolute">
+    <origin xyz="0.0 0.0 0.091" rpy="0 0 0"/>
+    <parent link="second_link_1"/>
+    <child link="third_link_1"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    <dynamics damping="50.0" friction="50.0"/>
+  </joint>
+
+</robot>

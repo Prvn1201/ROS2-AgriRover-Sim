@@ -1,0 +1,23 @@
+twist_mux:
+  ros__parameters:
+    topics:
+      navigation:
+        topic: cmd_vel        # Default topic for Nav2
+        timeout: 0.5
+        priority: 10
+      tracker:
+        topic: cmd_vel_tracker # Optional: For object tracking later
+        timeout: 0.5
+        priority: 20
+      joystick:
+        topic: cmd_vel_joy    # For Joystick controller
+        timeout: 0.5
+        priority: 100
+      keyboard:
+        topic: cmd_vel_key    # For Keyboard teleop
+        timeout: 0.5
+        priority: 100
+      emergency:
+        topic: cmd_vel_emergency
+        timeout: 0.5
+        priority: 200     # Highest priority (stops everything else)
